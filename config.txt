@@ -9,5 +9,8 @@ SOURCE_FOLDER=""
 # Where do you want the backup folders saved?
 TARGET_FOLDER=""
 
+# Delete old backups? 0=false/1=true. Default:0
+DELETE_OLD="0"
+
 # Delete backups after how many days? Default:30
 DELETE_AFTER="30"

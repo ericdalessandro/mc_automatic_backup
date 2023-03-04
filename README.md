@@ -9,8 +9,9 @@ At certain points, the script writes to the log file. If old backups are deleted
 #### How to configure:
 1. Configure config.txt
     - !Use absolute file paths.
-2. Run automatic_backup.sh to test and create initial backup.
-3. Schedule automatic_backup.sh to run automatically at a given interval greater than or equal to daily.
+2. Start MC server using start_server.sh.
+3. Run automatic_backup.sh to test and create initial backup.
+4. Schedule automatic_backup.sh to run automatically at a given interval greater than or equal to daily.
     - Cronjobs work great.
 
 #### Notes:
@@ -18,7 +19,6 @@ This script does not delete files in the source directory however, it's always a
 I recommend using this start_server.sh script to start your server before running the backup since it looks for a hardcoded screen name ("minecraft").
 
 ## Future Plans:
-- Make deletion of old saves togglable. 
 - Make wait period before shutdown togglable.
 - Make wait period before shutdown configurable. 
 - Allow for more frequent intervals than daily.
