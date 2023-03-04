@@ -6,5 +6,5 @@ sleep 15
 screen -S minecraft -p 0 -X stuff "stop^M"
 sleep 15
 cd $SOURCE_FOLDER
-screen -AmdS minecraft java -Xmx4096M -Xms4096M -jar server.jar nogui
+screen -AmdS minecraft java -Xmx$MC_RAM_ALLOCATION -Xms$MC_RAM_ALLOCATION -jar server.jar nogui
 echo "Server restarting."
