@@ -15,12 +15,16 @@ touch $SCRIPTDIR/log.txt
 echo "Starting log for $CURRENT_DATE..." >> $SCRIPTDIR/log.txt
 
 # Announce server maintnance:
-echo "[$(date +"%Y-%m-%d %H:%M:%S")] Announcing server maintenance..." >> $SCRIPTDIR/log.txt
-for i in 5 4 3 2 1
-do
-    screen -S minecraft -p 0 -X stuff "say Server will restart in $i minute(s) for routine maintenance.^M"
-    sleep 60
-done
+if [ $ENABLE_WAIT_PERIOD -eq 1 ]
+then
+    echo "[$(date +"%Y-%m-%d %H:%M:%S")] Announcing server maintenance..." >> $SCRIPTDIR/log.txt
+    while [ $WAIT_PERIOD_LENGTH -gt 0 ]
+    do
+        screen -S minecraft -p 0 -X stuff "say Server will restart in $WAIT_PERIOD_LENGTH minute(s) for routine maintenance.^M"
+        sleep 60
+        WAIT_PERIOD_LENGTH=$(( $WAIT_PERIOD_LENGTH - 1 ))
+    done
+fi
 
 # Stop the server:
 echo "[$(date +"%Y-%m-%d %H:%M:%S")] Stopping server..." >> $SCRIPTDIR/log.txt
@@ -43,7 +47,6 @@ cp -R $SOURCE_FOLDER/* $TARGET_FOLDER/$CURRENT_DATE
 # Check $DELETE_OLD:
 if [ $DELETE_OLD -eq 1 ]
 then
-
     # Clean up old folders:
     echo "[$(date +"%Y-%m-%d %H:%M:%S")] Cleaning up backups older than $DELETE_AFTER days..." >> $SCRIPTDIR/log.txt
     cd $TARGET_FOLDER
@@ -73,4 +76,4 @@ cd $SCRIPTDIR
 #Log to log.txt:
 echo "[$(date +"%Y-%m-%d %H:%M:%S")] Backup complete for $CURRENT_DATE." >> $SCRIPTDIR/log.txt
 
-echo "Script complete. Please allow up to a minute for server to start."
+echo "Script complete. Please allow a minute for server to start."

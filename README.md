@@ -19,10 +19,7 @@ This script does not delete files in the source directory however, it's always a
 I recommend using this start_server.sh script to start your server before running the backup since it looks for a hardcoded screen name ("minecraft").
 
 ## Future Plans:
-- Make wait period before shutdown togglable.
-- Make wait period before shutdown configurable. 
 - Allow for more frequent intervals than daily.
 - Allow use of different stop/start scripts.
-- Make RAM allocation in start_server.sh configurable (currently uses 4GB).
 - Add "try/catch" logic to log errors, kinda.
 - Additional configuration items.
